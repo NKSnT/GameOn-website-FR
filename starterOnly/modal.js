@@ -24,6 +24,7 @@ modalCloseBtn.onclick = (event) => {
   modalbg.style.display = "none";
 };
 
+// statut variable for form élément
 let emailFailCheck = false;
 let firstFailCheck = false;
 let lastFailCheck = false;
@@ -43,15 +44,15 @@ function addErrorElement(targetID, infoError) {
   targetElement.insertAdjacentElement("afterend", newP);
 }
 // fonction qui permet la validation du formulair
-//et l'affichage d'un erreure le cas contraire.
 function form_Validate(target, Regex, infoError, errorState) {
   if (target.value == "") {
+    //verifie si l'élement est vide
     if (errorState == false) {
       target.style.border = "2px solid red";
       addErrorElement(target.id, infoError);
       target.addEventListener("change", function () {
-        //réajuste le visuelle si modification
         var test = target.value;
+        //réajuste le visuelle si modification
         if (test != "" && target.style.border != "") {
           target.style.border = "";
           target.nextElementSibling.remove();
@@ -68,6 +69,7 @@ function form_Validate(target, Regex, infoError, errorState) {
     return false;
   } else if (!Regex.test(target.value)) {
     if (errorState == false) {
+      //verifie que l'élément respect bien les regex
       target.style.border = "2px solid red";
       addErrorElement(target.id, infoError);
       target.addEventListener("change", function () {
@@ -163,6 +165,7 @@ form.onsubmit = function (event) {
   );
   const numberReg = new RegExp(/^[1-9][0-9]?$|^99$/); // 1 to 99
 
+  //méssages d'erreur
   let emailError = "Veuillez verifier votre Email. ";
   let nameError = "Veuillez entrer 2 caractère ou plus.";
   let dateError = "Vous devez entrer votre date de naissance";
@@ -170,6 +173,7 @@ form.onsubmit = function (event) {
   let CGUError = "Vous devez avoir lut et accepter les CGU";
   let checkboxError = "Veuilliez ne selectionner aumoin un élément.";
 
+  //verification du formulair
   let countError = 0;
   if (!form_Validate(email, emailReg, emailError, emailFailCheck)) {
     //email input is valid
@@ -207,6 +211,7 @@ form.onsubmit = function (event) {
   if (countError != 0) {
     alert("votre réservation na pas pu être effectué.");
   } else {
+    //passe a la modal validée
     let modal = document.querySelector("div.content");
     let oldContent = document.querySelector("div.modal-body");
     let newContent = document.createElement("p");
@@ -214,7 +219,6 @@ form.onsubmit = function (event) {
     newContent.innerText = "Merci pour votre inscription";
     oldContent.style.opacity = "0";
     modal.appendChild(newContent);
-    alert("Merci! votre réservation a été reçue.");
     let newDivBtn = document.createElement("div");
     newDivBtn.style.width = "100%";
     newDivBtn.classList.add("newDivBtn");
