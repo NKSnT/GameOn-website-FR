@@ -171,7 +171,7 @@ form.onsubmit = function (event) {
   let dateError = "Vous devez entrer votre date de naissance";
   let numberError = "Seul les nombre entre 1 et 99 son accepté.";
   let CGUError = "Vous devez avoir lut et accepter les CGU";
-  let checkboxError = "Veuilliez ne selectionner aumoin un élément.";
+  let checkboxError = "Veuilliez selectionner un élément.";
 
   //verification du formulair
   let countError = 0;
